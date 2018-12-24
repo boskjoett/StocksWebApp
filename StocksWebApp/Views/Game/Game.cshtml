@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Stock Simulator Game</h1>
+
+    <div class="row justify-content-start">
+        <div class="col-2 text-left">
+            <b>Name</b>
+        </div>
+        <div class="col-10 text-left">
+            Volkswagen
+        </div>
+    </div>
+
+    <div class="row justify-content-start">
+        <div class="col-2 text-left">
+            <b>Ticker</b>
+        </div>
+        <div class="col-10 text-left">
+            VWAG
+        </div>
+    </div>
+
+    <div class="row justify-content-start">
+        <div class="col-2 text-left">
+            <b>Price</b>
+        </div>
+        <div class="col-10 text-left">
+            EUR 63.2
+        </div>
+    </div>
+
+    <br />
+
+    <p class="text-left">
+        <a class="btn btn-primary" data-toggle="collapse" href="#stockChart" role="button" aria-expanded="false" aria-controls="stockChart">Toggle Chart</a>
+    </p>
+
+    <div class="collapse" id="stockChart">
+        <div class="card card-body">
+            <img src="~/images/demochart.png" />
+        </div>
+    </div>
+</div>
