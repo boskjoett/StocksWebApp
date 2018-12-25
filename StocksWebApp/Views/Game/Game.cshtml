@@ -33,9 +33,16 @@
     </div>
 
     <br />
+    <br />
+
+    <!-- Insert a Javascript chart. See https://www.chartjs.org/ -->
+    <canvas id="stockChart" width="800" height="300"></canvas>
+
+    <br />
+    <br />
 
     <p class="text-left">
-        <a class="btn btn-primary" data-toggle="collapse" href="#stockChart" role="button" aria-expanded="false" aria-controls="stockChart">Toggle Chart</a>
+        <a class="btn btn-primary" data-toggle="collapse" href="#stockChart" role="button" aria-expanded="true" aria-controls="stockChart">Toggle Chart</a>
     </p>
 
     <div class="collapse" id="stockChart">
@@ -45,8 +52,36 @@
     </div>
 </div>
 
+<!-- Include Chart.js Javascript library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+
 <!-- Include SignalR Javascript library -->
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 
 <!-- Include page specific javascript code -->
 <script src="~/js/signalr.js"></script>
+
+<script type="text/javascript">
+
+    // See: https://www.chartjs.org/
+
+    var ctx = document.getElementById('stockChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                label: "VWAG - Volkswagen",
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+</script>

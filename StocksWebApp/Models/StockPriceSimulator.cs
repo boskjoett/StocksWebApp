@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Microsoft.AspNetCore.SignalR;
 using StocksWebApp.Hubs;
 
@@ -6,14 +7,18 @@ namespace StocksWebApp.Models
 {
     public class StockPriceSimulator : IStockPriceSimulator
     {
-        private const int StockUpdateIntervalInMilliseconds = 2000;
+        private const int StockUpdateIntervalInMilliseconds = 1000;
         private Timer _priceTimer;
         private readonly IHubContext<StockPriceHub> _hubContext;
         private double _price;
+        private Random _randomOffset;
+        private Random _randomFactor;
 
         public StockPriceSimulator(IHubContext<StockPriceHub> hubContext)
         {
             _hubContext = hubContext;
+            _randomOffset = new Random();
+            _randomFactor = new Random();
         }
 
         public void Start()
@@ -24,9 +29,12 @@ namespace StocksWebApp.Models
 
         private void OnTimerElapsed(object state)
         {
-            // Push via SignalR
-            _hubContext.Clients.All.SendAsync("PriceUpdated", "WVAG", _price);
-            _price += 1;
+            // Generate a new random price
+            _price += ((_randomOffset.NextDouble() - 0.5) * _randomFactor.Next(5));
+            _price = Math.Round(_price, 2);
+
+            // Push to all clients via the SignalR hub
+            _hubContext.Clients.All.SendAsync("PriceUpdated", "VWAG", _price);
         }
     }
 }
