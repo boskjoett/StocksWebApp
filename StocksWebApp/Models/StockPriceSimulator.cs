@@ -24,7 +24,7 @@ namespace StocksWebApp.Models
         public void Start()
         {
             _priceTimer = new Timer(OnTimerElapsed, this, StockUpdateIntervalInMilliseconds, StockUpdateIntervalInMilliseconds);
-            _price = 10;
+            _price = 60;
         }
 
         private void OnTimerElapsed(object state)
