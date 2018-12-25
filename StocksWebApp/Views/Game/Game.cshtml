@@ -28,7 +28,7 @@
             <b>Price</b>
         </div>
         <div class="col-10 text-left">
-            EUR 63.2
+            EUR <span id="stockPrice">63.2</span>
         </div>
     </div>
 
@@ -44,3 +44,9 @@
         </div>
     </div>
 </div>
+
+<!-- Include SignalR Javascript library -->
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+
+<!-- Include page specific javascript code -->
+<script src="~/js/signalr.js"></script>
